@@ -17,17 +17,32 @@ export interface IApiRequestBody {
   nlu?: IApiRequestNlu;
 }
 
-export interface IApiRequesSession {
-  new: boolean;
-  message_id: number;
-  session_id: string;
-  skill_id: string;
+export interface IApiRequestUser {
   user_id: string;
+  access_token: string;
+}
+
+export interface IApiRequestApplication {
+  application_id: string;
+}
+
+export interface IApiRequesSession {
+  session_id: string;
+  message_id: number;
+  skill_id: string;
+  /**
+   * @deprecated The method should not be used
+   */
+  user_id: string;
+  user?: IApiRequestUser;
+  application: IApiRequestApplication;
+  new: boolean;
 }
 
 export interface IApiRequest {
   meta: IApiRequestMeta;
   request: IApiRequestBody;
   session: IApiRequesSession;
+  // TODO state
   version: string;
 }

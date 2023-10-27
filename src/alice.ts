@@ -1,20 +1,21 @@
 import { EventEmitter } from 'events';
 
-import { IImagesApiConfig, IImagesApi, ImagesApi } from './imagesApi';
-import { WebhookServer, IWebhookServer } from './server/webhookServer';
-import { Middleware } from './middleware/middleware';
 import { IApiRequest } from './api/request';
-import { IContext } from './context';
 import { IApiResponse } from './api/response';
-import { ALICE_PROTOCOL_VERSION } from './constants';
 import { CommandCallback, CommandDeclaration } from './command/command';
+import { ALICE_PROTOCOL_VERSION } from './constants';
+import { IContext } from './context';
+import debug from './debug';
+import { IImagesApi, IImagesApiConfig, ImagesApi } from './imagesApi';
+import { Middleware } from './middleware/middleware';
+import { IWebhookServer, WebhookServer } from './server/webhookServer';
 import { InMemorySessionStorage } from './session/inMemorySessionStorage';
 import { sessionMiddleware } from './session/sessionMiddleware';
-import debug from './debug';
 
-import { MainStage } from './stage/mainScene';
 import { ISessionStorage } from './session/session';
+import { MainStage } from './stage/mainScene';
 import { IScene } from './stage/scene';
+import { IStageContext } from './stage/stageContext';
 
 export interface IAliceConfig extends IImagesApiConfig {
   sessionStorage?: ISessionStorage;
@@ -57,6 +58,8 @@ export class Alice implements IAlice {
       sessionId: request.session.session_id,
       messageId: request.session.message_id,
       userId: request.session.user_id,
+      user: request.session.user,
+      application: request.session.application,
       payload: request.request.payload,
       nlu: request.request.nlu,
     };
@@ -140,13 +143,13 @@ export class Alice implements IAlice {
   }
 
   public command(
-    declaration: CommandDeclaration<IContext>,
-    callback: CommandCallback<IContext>,
+    declaration: CommandDeclaration<IStageContext>,
+    callback: CommandCallback<IStageContext>,
   ): void {
     this._mainStage.scene.command(declaration, callback);
   }
 
-  public any(callback: CommandCallback<IContext>): void {
+  public any(callback: CommandCallback<IStageContext>): void {
     this._mainStage.scene.any(callback);
   }
 

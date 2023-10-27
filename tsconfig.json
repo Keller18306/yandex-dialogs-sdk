@@ -11,7 +11,8 @@
         "strictNullChecks": true,
         "strictPropertyInitialization": true,
         "moduleResolution": "node",
-        "sourceMap": false,
+        "sourceMap": true,
+        "declaration": true,
         "outDir": "dist",
         "baseUrl": ".",
         "paths": {

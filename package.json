@@ -1,6 +1,6 @@
 {
-  "name": "yandex-dialogs-sdk",
-  "version": "2.2.0",
+  "name": "@keller18306/yandex-dialogs-sdk",
+  "version": "1.0.1",
   "description": "Build your skill for Alice with ease.",
   "main": "dist/index.js",
   "scripts": {
@@ -21,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fletcherist/yandex-dialogs-sdk.git"
+    "url": "git+https://github.com/Keller18306/yandex-dialogs-sdk.git"
   },
   "husky": {
     "hooks": {
@@ -46,12 +46,12 @@
   "files": [
     "dist"
   ],
-  "author": "Phil Romanov (@fletcherist)",
+  "author": "keller18306",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/fletcherist/yandex-dialogs-sdk/issues"
+    "url": "https://github.com/Keller18306/yandex-dialogs-sdk/issues"
   },
-  "homepage": "https://github.com/fletcherist/yandex-dialogs-sdk#readme",
+  "homepage": "https://github.com/Keller18306/yandex-dialogs-sdk#readme",
   "dependencies": {
     "@types/fast-levenshtein": "0.0.1",
     "@types/node-fetch": "^2.1.2",
